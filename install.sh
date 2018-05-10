@@ -32,7 +32,24 @@ if [ -f "$service_file" ]; then
     exit 1
 fi
 
-sudo cp systemd.service $service_file
+echo "[Unit]
+Description=FactorioServer
+
+[Service]
+WorkingDirectory=/home/${SERVER_USER}/server
+ExecStart=/home/${SERVER_USER}/server/server.sh
+Restart=always
+# Restart service after 10 seconds if service crashes
+RestartSec=10
+# Output to syslog
+StandardOutput=syslog
+# Output to syslog
+StandardError=syslog
+SyslogIdentifier=${SERVICE_NAME}
+User=${SERVER_USER}
+
+[Install]
+WantedBy=multi-user.target" > $service_file
 
 sudo systemctl daemon-reload
 sudo systemctl enable $SERVICE_NAME
