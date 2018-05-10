@@ -1,4 +1,4 @@
-USER=${USER:="factorio"}
+SERVER_USER=${SERVER_USER:="factorio"}
 REPO_URI=${REPO_URI:="factorio"}
 SERVER_DIR=${SERVER_DIR:="server"}
 SERVICE_NAME=${SERVICE_NAME:="factorio-server"}
@@ -6,16 +6,16 @@ SYSTEMD_DIR=${SYSTEMD_DIR:="/etc/systemd/system"}
 
 # Create a dedicated factorio user
 
-if id -u $USER; then
-    echo "User $USER already exists"
+if id -u $SERVER_USER; then
+    echo "User $SERVER_USER already exists"
 else
-    echo "Creating $USER user"
-    sudo useradd -m $USER
+    echo "Creating $SERVER_USER user"
+    sudo useradd -m $SERVER_USER
 fi
 
-cd ~$USER
+cd ~$SERVER_USER
 # Clone script into users' directory
-sudo -u $USER git clone $REPO_URI $SERVER_DIR
+sudo -u $SERVER_USER git clone $REPO_URI $SERVER_DIR
 
 # Install and enable systemd script
 cd $SERVER_DIR
