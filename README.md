@@ -12,10 +12,24 @@ ___
 
 ___
 
+### Dependencies
+
+Make sure those are installed before proceeding:
+
+```
+systemd
+curl
+git
+tar
+xz-utils
+```
+
+___
+
 ### Installation
 
 Run the following script in your server shell:
 
 ```shell
-https://raw.githubusercontent.com/MantasPauliukonis/factorio-roboport/master/install.sh | bash
+curl https://raw.githubusercontent.com/MantasPauliukonis/factorio-roboport/master/install.sh | bash
 ```
