@@ -1,12 +1,6 @@
 # Read .env file
 export $(egrep -v '^#' .env | xargs)
 
-SERVER_USER=${SERVER_USER:="factorio"}
-REPO_URI=${REPO_URI:="factorio"}
-SERVER_DIR=${SERVER_DIR:="server"}
-SERVICE_NAME=${SERVICE_NAME:="factorio-server"}
-SYSTEMD_DIR=${SYSTEMD_DIR:="/etc/systemd/system"}
-
 # Create a dedicated factorio user
 
 if id -u $SERVER_USER; then
