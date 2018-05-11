@@ -1,3 +1,6 @@
+# Read .env file
+export $(egrep -v '^#' .env | xargs)
+
 SERVER_USER=${SERVER_USER:="factorio"}
 REPO_URI=${REPO_URI:="factorio"}
 SERVER_DIR=${SERVER_DIR:="server"}
