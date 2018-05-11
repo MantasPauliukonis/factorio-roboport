@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Read .env file
+export $(egrep -v '^#' .env | xargs)
+
 # Save game path
 SAVE=${SAVE:="./save.zip"}
 #
