@@ -79,6 +79,34 @@ function check_update {
     fi
 }
 
+# Updates server script if needed
+function script_update {
+    server_buf=$(<server.sh)
+    install_buf=$(<install.sh)
+    
+    git pull
+    
+    server_updated_buf=$(<server.sh)
+    install_updated_buf=$(<install.sh)
+    
+    # Comparing difference after repo update
+    if [ "$install_buf" != "$install_updated_buf" ]; then
+        echo "Install script has changed"
+        # Running install
+        bash ./install.sh
+        # Exiting script so it will be reloaded by systemd automatically
+        exit 0
+    fi
+    
+    if [ "$server_buf" != "$server_updated_buf" ]; then
+        echo "Server script has changed"
+        # Exiting script so it will be reloaded by systemd automatically
+        exit 0
+    fi
+    
+    echo "No updates"
+}
+
 function get_server_command {
     action=${1:-"start-server"}
     path="$binary_path --$action $SAVE"
@@ -104,8 +132,7 @@ do
     echo "Loop"
 
     if [ -d ".git" ]; then
-        git remote update
-        git pull
+        script_update
     else
         echo "Git repository not found. Script auto-updates will not be available"
     fi
