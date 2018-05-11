@@ -3,20 +3,6 @@
 # Read .env file
 export $(egrep -v '^#' .env | xargs)
 
-# Save game path
-SAVE=${SAVE:="./save.zip"}
-#
-EXTRACT_DIR=${EXTRACT_DIR:="./factorio"}
-# Server files will be downloaded to thus directory. Warning: must not be named "factorio"
-SERVER_DIR=${SERVER_DIR:="./current"}
-# Directory with files that are overlayed after each updated
-OVERLAY_DIR=${OVERLAY_DIR:="./overlay"}
-# Game binary within server directory
-BINARY=${BINARY:="./bin/x64/factorio"}
-# 
-DOWNLOAD_URI=${DOWNLOAD_URI:="https://www.factorio.com/get-download/stable/headless/linux64"}
-
-
 binary_path="$SERVER_DIR/$BINARY"
 
 # Configuration sanity logs
