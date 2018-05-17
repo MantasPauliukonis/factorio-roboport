@@ -31,11 +31,6 @@ fi
 
 service_file="$SYSTEMD_DIR/$SERVICE_NAME.service"
 
-if [ -f "$service_file" ]; then
-    echo "Service file ${service_file} already exists. Please use a different name"
-    exit 1
-fi
-
 echo "[Unit]
 Description=FactorioServer
 
