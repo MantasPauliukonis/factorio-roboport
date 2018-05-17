@@ -1,6 +1,9 @@
 # Read .env file
 export $(egrep -v '^#' .env | xargs)
 
+# Create overlay directory if does not exist
+mkdir -p $OVERLAY_DIR
+
 if [ ! -f ".env" ]; then
     # Copy example env file
     cp .env.example .env
