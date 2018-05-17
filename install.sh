@@ -1,15 +1,15 @@
 # Read .env file
 export $(egrep -v '^#' .env | xargs)
 
-# Create overlay directory if does not exist
-mkdir -p $OVERLAY_DIR
-
 if [ ! -f ".env" ]; then
     # Copy example env file
     cp .env.example .env
     echo "Edit .env file to customize defaults and run this script again"
     exit 0
 fi
+
+# Create overlay directory if does not exist
+mkdir -p $OVERLAY_DIR
 
 # Create a dedicated factorio user
 
