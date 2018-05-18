@@ -43,7 +43,6 @@ function download {
 function update {
     rm -rf $SERVER_DIR
     cp -a $EXTRACT_DIR $SERVER_DIR
-    cp -af $OVERLAY_DIR $SERVER_DIR
     rm -rf $EXTRACT_DIR
 }
 
@@ -152,6 +151,10 @@ do
 
     # Checks if server is running
     if [ -z "$server_pid" ] || ! ps -p $server_pid &> /dev/null; then
+        # Overlay user customized files
+        cp -af $OVERLAY_DIR $SERVER_DIR
+        
+        # Figure out the command
         command=$(get_server_command)
         echo "Starting server with command $command"
 
