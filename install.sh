@@ -1,7 +1,7 @@
 # Read .env file
 export $(egrep -v '^#' .env | xargs)
 
-if [ ! -f ".env" ]; then
+if [ -z "$FACTORIO_ROBOPORT_ENV" ]; then
     # Copy example env file
     cp .env.example .env
     echo "Edit .env file to customize defaults and run this script again"
