@@ -73,6 +73,7 @@ function script_update {
     install_buf=$(<install.sh)
     
     git pull
+    git merge origin
     
     server_updated_buf=$(<server.sh)
     install_updated_buf=$(<install.sh)
