@@ -22,7 +22,7 @@ fi
 
 cd ~$SERVER_USER
 # Clone script into users' directory
-sudo -u $SERVER_USER git clone $REPO_URI $SERVER_DIR
+sudo -u $SERVER_USER git clone -b live $REPO_URI $SERVER_DIR
 
 # Install and enable systemd script
 cd $SERVER_DIR
